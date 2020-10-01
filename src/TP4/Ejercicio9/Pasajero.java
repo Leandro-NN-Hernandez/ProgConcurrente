@@ -21,8 +21,11 @@ public class Pasajero implements Runnable {
        
     @Override
     public void run() {
+        //Camina mientras espera el taxi
         caminar();
+        //Trata de subirse
         taxi.subirseTaxi(nombre);
+        //una vez terminado el recorrido se baja
         taxi.bajarseTaxi(nombre);
     }
     

@@ -25,9 +25,13 @@ public class Taxista implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            System.out.println(nombre + " esta durmiendo.");
+        //Inicia el taxista durmiendo
+        System.out.println(nombre + " esta durmiendo.");
+        while (taxi.cantMayorZero()) {
+            
             taxi.moverse(nombre);
+            System.out.println(nombre + " esta durmiendo por: " + taxi.getCant());
         }
+
     }
 }
