@@ -12,16 +12,12 @@ import java.util.logging.Logger;
  *
  * @author Barba
  */
-public class Cocinero implements Runnable{
-    private Servicio service;
-    private int cont;
+public class Cocinero extends EmpleadoRestaurante{
     
     public Cocinero(Servicio serv){
-        this.service=serv;
+        super(serv);
     }
-    public void setContador(int cant){
-        this.cont=cant;
-    }
+    
     public void run(){
         for(int i=0;i<cont;i++){
             try {  

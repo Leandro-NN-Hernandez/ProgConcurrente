@@ -12,15 +12,10 @@ import java.util.logging.Logger;
  *
  * @author Barba
  */
-public class Mozo implements Runnable{
-    private Servicio service;
-    private int cont=0;
+public class Mozo extends EmpleadoRestaurante{
     
     public Mozo(Servicio serv){
-        this.service=serv;    
-    }
-    public void setContador(int cant){
-        this.cont=cant;
+        super(serv);   
     }
     
     @Override
