@@ -15,17 +15,20 @@ import java.util.logging.Logger;
  */
 public class Taxi {
 
+    private Contador cant;
     private final Semaphore semSalida;
     private final Semaphore semTaxista;
     private final Semaphore semTaxi;
 
-    public Taxi(Semaphore sem, Semaphore semT, Semaphore semS) {
+    public Taxi(Semaphore sem, Semaphore semT, Semaphore semS, Contador c) {
         semTaxi = sem;
         semTaxista = semT;
         semSalida = semS;
+        cant = c;
     }
 
     public void subirseTaxi(String nombre) {
+        //El pasajero se sube al taxi, y avisa al taxista
         try {
             semTaxi.acquire();
             System.out.println(nombre + " se subio al taxi.");
@@ -35,23 +38,27 @@ public class Taxi {
     }
 
     private void avisarTaxista() {
+        //Se despierta el taxista
         semTaxista.release();
 
     }
 
     public void bajarseTaxi(String nombre) {
-        
-        try {            
+        //LLegado al destino, el pasajero se baja
+        try {
             semSalida.acquire();
             System.out.println(nombre + " llego a destino.");
         } catch (InterruptedException ex) {
             Logger.getLogger(Taxi.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(nombre + " se bajo del taxi.");
+        // Se disminuye la cantidad de pasajeros restantes
+        cant.disminuir();
         semTaxi.release();
     }
 
     public void moverse(String nombre) {
+        //El taxista se levanta y maneja a destino
         try {
             semTaxista.acquire();
             System.out.println(nombre + " esta manejando el taxi");
@@ -60,7 +67,18 @@ public class Taxi {
         } catch (InterruptedException ex) {
             Logger.getLogger(Taxi.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //Avisa a pasajero que llego
         semSalida.release();
+    }
+
+    public boolean cantMayorZero() {
+        //le pregunta si hay pasajeros por subir
+        return cant.cantMayorZero();
+    }
+    
+    public int getCant(){
+        //consigue la cantidad de pasajeros restantes
+        return cant.getCant();
     }
 
 }

@@ -19,11 +19,11 @@ public class Main {
         Semaphore semTaxista = new Semaphore(0);
         Semaphore semSalida = new Semaphore(0);
 
-        Taxi taxi = new Taxi(semTaxi, semTaxista, semSalida);
+        Taxi taxi = new Taxi(semTaxi, semTaxista, semSalida, new Contador(cantP));
         Taxista taxista = new Taxista(semTaxista, taxi, "TAXISTA");
         Thread pasajeros[] = new Thread[cantP];
         for (int i = 0; i < pasajeros.length; i++) {
-
+            //Se generan una cantidad de hilos pasajeros igual a canP
             pasajeros[i] = new Thread(new Pasajero(taxi, ("PASAJERO-" + i)));
         }
         Thread hiloTaxista = new Thread(taxista);
