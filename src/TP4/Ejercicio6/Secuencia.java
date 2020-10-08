@@ -15,38 +15,20 @@ import java.util.logging.Logger;
  */
 public class Secuencia implements Runnable {
 
+    private final Texto texto;
     private final char caracter;
-    private final int repeticion;
-    private final Semaphore inicial;
-    private final Semaphore fin;
 
-    public Secuencia(char caracter, int repeticion, Semaphore sem1, Semaphore sem2) {
+    public Secuencia(char caracter, Texto text) {
         this.caracter = caracter;
-        this.repeticion = repeticion;
-        inicial = sem1;
-        fin = sem2;
+        texto = text;
+
     }
 
     @Override
     public void run() {
         for (int i = 0; i < 10; i++) {
-            imprimir();
+            texto.imprimir(caracter);
         }
-    }
-
-    private void imprimir() {
-        String sec = "";
-        for (int i = 0; i < repeticion; i++) {
-            sec += caracter;
-        }
-        try {
-            inicial.acquire();
-            System.out.print(sec);
-            fin.release();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Secuencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
 }

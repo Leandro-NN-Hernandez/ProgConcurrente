@@ -14,12 +14,20 @@ import java.util.concurrent.Semaphore;
 public class Test {
 
     public static void main(String[] args) {
-        Semaphore semA = new Semaphore(1);
-        Semaphore semB = new Semaphore(0);
-        Semaphore semC = new Semaphore(0);
-        Thread a = new Thread(new Secuencia('A', 1, semA, semB));
-        Thread b = new Thread(new Secuencia('B', 2, semB, semC ));
-        Thread c = new Thread(new Secuencia('C', 3, semC, semA));
+
+        Semaphore[] sem = new Semaphore[3];
+        sem[0] = new Semaphore(1);
+        for (int i = 1; i < sem.length; i++) {
+            sem[i] = new Semaphore(0);
+        }
+        char[] letra = {'A', 'B', 'C'};
+        int[] rep = {1, 2, 3};
+
+        Texto text = new Texto(sem, letra, rep);
+
+        Thread a = new Thread(new Secuencia('A', text));
+        Thread b = new Thread(new Secuencia('B', text));
+        Thread c = new Thread(new Secuencia('C', text));
 
         a.start();
         b.start();
