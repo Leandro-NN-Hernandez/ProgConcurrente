@@ -11,10 +11,10 @@ public class Carrera {
         Testigo testigo = new Testigo(new Semaphore(1));
 
         Thread[] atletas = { 
-                new Thread(new Atleta("PRIMERO", testigo)),
-                new Thread(new Atleta("SEGUNDO", testigo)),
-                new Thread(new Atleta("TERCERO", testigo)),
-                new Thread(new Atleta("CUARTO", testigo)) 
+                new Thread(new Atleta("PRIMERO", testigo, 0)),
+                new Thread(new Atleta("SEGUNDO", testigo, 1)),
+                new Thread(new Atleta("TERCERO", testigo, 2)),
+                new Thread(new Atleta("CUARTO", testigo, 3)) 
             };
 
         for (int i = 0; i < atletas.length; i++) {
