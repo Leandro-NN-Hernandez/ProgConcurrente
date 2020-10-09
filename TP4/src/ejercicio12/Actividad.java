@@ -17,45 +17,43 @@ public class Actividad {
     private ReentrantLock lockCorrer = new ReentrantLock();
     private ReentrantLock lockDormir = new ReentrantLock();
 
-    public void comer(int numero) throws InterruptedException {
-        try {
-            if (this.lockComida.tryLock()) {
-                System.out.println("Hamster " + numero + " esta comiendo");
-                Thread.sleep(1000);
-            }
-        } finally {
+    public boolean comer(int numero) throws InterruptedException {
+        boolean band = true;
+        if (this.lockComida.tryLock()) {
+            System.out.println("Hamster " + numero + " esta comiendo");
+            Thread.sleep(1000);
             System.out.println("Hamster " + numero + " dejo de comer");
             this.lockComida.unlock();
-            this.correr(numero);           
+            band = false;
         }
-        
+        return band;
 
     }
-    public void correr(int numero) throws InterruptedException{
-        try{
-            if(this.lockCorrer.tryLock()){
-                System.out.println("Hamster "+numero+" esta corriendo");
-                Thread.sleep(1000);    
-            }
-        } finally{
+
+    public boolean correr(int numero) throws InterruptedException {
+        boolean band = true;
+        if (this.lockCorrer.tryLock()) {
+            System.out.println("Hamster " + numero + " esta corriendo");
+            Thread.sleep(1000);
             System.out.println("Hamster " + numero + " dejo de correr");
+            band = false;
             this.lockCorrer.unlock();
-            this.dormir(numero);
-        
         }
-    
+        return band;
+
     }
-    public void dormir(int numero) throws InterruptedException{
-        try{
-            if(this.lockDormir.tryLock()){
-                System.out.println("Hamster "+numero+" esta durmiendo");
-                Thread.sleep(1000);
-            }
-        } finally{
+
+    public boolean dormir(int numero) throws InterruptedException {
+        boolean band = true;
+        if (this.lockDormir.tryLock()) {
+            System.out.println("Hamster " + numero + " esta durmiendo");
+            Thread.sleep(1000);
             System.out.println("Hamster " + numero + " dejo de dormir");
             this.lockDormir.unlock();
+            band = false;
         }
-    
+        return band;
+
     }
 
 }

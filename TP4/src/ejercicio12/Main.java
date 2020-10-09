@@ -18,10 +18,10 @@ public class Main {
         Hamster roedor3= new Hamster(3,accion);
         
         roedor1.start();
-        roedor1.join();
         roedor2.start();
-        roedor2.join();
         roedor3.start();
+        roedor1.join();
+        roedor2.join();
         roedor3.join();
         
     }
