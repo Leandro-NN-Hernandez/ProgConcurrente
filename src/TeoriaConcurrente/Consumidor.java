@@ -18,6 +18,7 @@ public class Consumidor extends Persona implements Runnable{
     @Override
     public void run() {
         while(true){
+             buffer.ingresarBuffer(nombre);
            buffer.quitarElemento(nombre);
        }
     }

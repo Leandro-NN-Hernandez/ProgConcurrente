@@ -19,6 +19,7 @@ public class Productor extends Persona implements Runnable {
     @Override
     public void run() {
        while(true){
+           buffer.ingresarBuffer(nombre);
            buffer.agregarElemento(nombre);
        }
     }

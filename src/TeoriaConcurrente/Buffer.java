@@ -21,7 +21,7 @@ public class Buffer {
     private int cantidad;
 
     public Buffer() {
-        semEspacio = new Semaphore(0, true);
+        semEspacio = new Semaphore(10, true);
         lockPermiso = new ReentrantLock();
         cantidad = 0;
     }
@@ -48,12 +48,7 @@ public class Buffer {
        // }
     }
 
-    public void quitarElemento(int nombre) {
-        try {
-            semEspacio.acquire();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Buffer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void quitarElemento(int nombre) {        
         if (lockPermiso.tryLock()) {
             System.out.println("Consumidor " + nombre + " QUITA del buffer un elemento. Quedan: " + cantidad);
             try {
@@ -62,6 +57,7 @@ public class Buffer {
                 }
             } finally {
                 lockPermiso.unlock();
+                semEspacio.release();
             }
         }
     }
