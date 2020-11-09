@@ -17,13 +17,13 @@ import java.util.logging.Logger;
 public class Texto {
 
     private final char[] letra;
-    private final HashMap dicSem;
-    private final HashMap dicText;
+    private final HashMap<Character, Semaphore> dicSem;
+    private final HashMap<Character, String> dicText;
 
     public Texto(Semaphore[] sem, char[] letra, int[] rep) {
         this.letra = letra;
-        this.dicText = new HashMap();
-        dicSem = new HashMap();
+        this.dicText = new HashMap<Character, String>();
+        dicSem = new HashMap<Character, Semaphore>();
         for (int i = 0; i < letra.length; i++) {
             dicSem.put(letra[i], sem[i]);
             String sec = "";

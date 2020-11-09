@@ -13,12 +13,10 @@ import java.util.concurrent.Semaphore;
  */
 public class Taxista implements Runnable {
 
-    private final Semaphore semTaxista;
     private final Taxi taxi;
     private final String nombre;
 
     public Taxista(Semaphore semTaxista, Taxi taxi, String nombre) {
-        this.semTaxista = semTaxista;
         this.taxi = taxi;
         this.nombre = nombre;
     }
