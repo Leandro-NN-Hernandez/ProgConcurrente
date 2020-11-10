@@ -66,7 +66,8 @@ public class Barberia {
             System.out.println(nombre + ":  SALE de la barberia.");
             synchronized(sillon){
                 cantSillon++;
-                sillon.notifyAll();}
+                sillon.notifyAll();
+            }
             
         }
     }
