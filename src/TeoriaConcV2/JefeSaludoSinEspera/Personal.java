@@ -39,11 +39,11 @@ public class Personal implements Runnable {
             llegaron++;
             //System.out.println(nombre+ " ENTRO MONITOR RUN");
             if(llegaron==numEmp){
-                System.out.println(nombre+" ENTRO == monitor"); 
+                //System.out.println(nombre+" ENTRO == monitor"); 
                 monitor.notify();
-            }            
-        }       
-        saludo.esperarJefe(nombre);    
+            }             
+        }               
+        saludo.esperarJefe(nombre);   
     }     
         
     }
