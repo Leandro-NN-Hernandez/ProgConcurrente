@@ -13,7 +13,8 @@ public class Saludo {
 
     synchronized void esperarJefe(String empleado) {
         try {
-            wait(1000*MAXSALUDOS); 
+            //Agregar un while
+            wait(); 
             //Puede suceder que el buenardo hilo personal llegue después que el notifyAll del jefe
             System.out.println(empleado + "> Buenos dias jefe!");
             synchronized(monitorSaludo){                

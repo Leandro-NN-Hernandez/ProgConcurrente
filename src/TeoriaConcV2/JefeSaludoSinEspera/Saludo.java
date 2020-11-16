@@ -2,7 +2,7 @@ package TeoriaConcV2.JefeSaludoSinEspera;
 
 public class Saludo {
 
-    private static Object monitor = new Object();
+    private static Object monitorSaludo = new Object();
     private final int MAXSALUDOS;
     private int cont;
 
@@ -14,15 +14,15 @@ public class Saludo {
     synchronized void esperarJefe(String empleado) {
         try {
             //System.out.println(empleado+" ENTRO ESPERARJEFE");
-            wait(2000);
+            wait(2000); //Por si las moscas
            // System.out.println(empleado+" PASO WAIT EJ--------------");
             System.out.println(empleado + "> Buenos dias jefe!");
-            synchronized(monitor){                
+            synchronized(monitorSaludo){                
                 cont++;
                 //System.out.println(cont);
                 if(cont==MAXSALUDOS){ 
                     //System.out.println(empleado+" PASO ==");             
-                    monitor.notify();
+                    monitorSaludo.notify();
                 }
                 //System.out.println(empleado+" FINAL ej"); 
             }
@@ -37,10 +37,10 @@ public class Saludo {
     }
 
     void aTrabajar() {
-        synchronized (monitor) {
+        synchronized (monitorSaludo) {
             while (cont < MAXSALUDOS) {
                 try {
-                    monitor.wait();
+                    monitorSaludo.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

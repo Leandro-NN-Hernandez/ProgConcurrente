@@ -18,7 +18,6 @@ public class Pista {
         try {
             semAterrizaje.acquire();
         } catch (InterruptedException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
         lockPista.lock();
@@ -26,7 +25,6 @@ public class Pista {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         contadorAterrisajes.aumentar();
@@ -47,7 +45,6 @@ public class Pista {
                 Thread.sleep(1000);
                 semAterrizaje.release();
             } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             }finally{
             lockPista.unlock();

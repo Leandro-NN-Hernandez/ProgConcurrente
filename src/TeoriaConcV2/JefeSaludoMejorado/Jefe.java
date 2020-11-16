@@ -2,7 +2,6 @@ package TeoriaConcV2.JefeSaludoMejorado;
 
 public class Jefe extends Personal{
     
-
     Jefe(Saludo s, String n, int cant) {
         super(s, n);
         numEmp = cant;

@@ -17,6 +17,7 @@ public class TestSaludo {
             elPersonal[i].start();
         }
         
+        
         System.out.println("LISTO, ahora que todos han saludado - a trabajar");
     }
 }

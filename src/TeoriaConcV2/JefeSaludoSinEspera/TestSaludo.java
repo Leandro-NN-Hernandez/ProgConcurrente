@@ -14,10 +14,12 @@ public class TestSaludo {
             elPersonal[i] = new Thread(new Personal(hola, nombresEmpleados[i - 1]));
         }
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 1; i < 6; i++) {
             elPersonal[i].start();
         }    
         
+        elPersonal[0].start();
+
         hola.aTrabajar();
     }
 }

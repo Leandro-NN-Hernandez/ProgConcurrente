@@ -47,7 +47,6 @@ public class Vendedor {
             System.out.println("El tren PARTIO.");
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
