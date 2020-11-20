@@ -1,4 +1,4 @@
-package TP6.Ej2v2;
+package TP6.Ej2;
 
 public class SalonTest {
     public static void main(String[] args){

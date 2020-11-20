@@ -1,4 +1,4 @@
-package TP6.Ej2v2;
+package TP6.Ej2;
 
 public class Salon {
     // Variables constantes
@@ -49,8 +49,7 @@ public class Salon {
     public synchronized void salirSala(String name){
         cantPersonas--;
         System.out.println(name+" SALIO DE LA SALA -----------------");
-        System.out.println("QUEDAN
-        : "+ cantPersonas);
+        System.out.println("QUEDAN: "+ cantPersonas);
         notifyAll();
     }
 
